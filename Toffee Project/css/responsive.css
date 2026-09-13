@@ -1,0 +1,276 @@
+/* ==========================================================================
+   Responsive Styles - Toffee SaaS Platform
+   ========================================================================== */
+
+/* Tablet & Smaller Laptops (<= 1024px) */
+@media (max-width: 1024px) {
+  .dash-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dash-chart-feed-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-signal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bento-card.col-span-2 {
+    grid-column: span 2;
+  }
+
+  .sandbox-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .roi-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-6px);
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand-col {
+    grid-column: span 2;
+  }
+}
+
+/* Tablets & Mobile (<= 768px) */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: var(--bg-glass-heavy);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--trans-normal);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-links.mobile-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nav-actions .btn-sm {
+    display: none;
+  }
+
+  .hero-trust-bar {
+    gap: 20px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-card.col-span-2 {
+    grid-column: span 1;
+  }
+
+  .dash-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-signal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resume-builder-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .resume-builder-grid,
+  .builder-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-builder-form,
+  .resume-builder-preview {
+    padding: 18px;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand-col {
+    grid-column: span 1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .dash-search-bar {
+    display: none;
+  }
+
+  .toast-container {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .toast {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .ai-copilot-panel {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .ai-robot-launcher-wrapper {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .ai-chat-popup {
+    right: 16px;
+    bottom: 115px;
+    width: calc(100vw - 32px);
+    max-height: 78vh;
+  }
+
+  .ai-copilot-intro {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .ai-copilot-intro .badge {
+    margin-left: 68px;
+  }
+
+  .ai-close-btn {
+    margin-left: auto;
+  }
+
+  .ai-language-bar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .ai-language-note {
+    width: 100%;
+  }
+
+  .ai-copilot-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ai-copilot-controls .control-group {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .ai-copilot-controls .btn {
+    width: 100%;
+  }
+
+  .ai-chat {
+    height: 390px;
+    padding: 16px;
+  }
+
+  .ai-bubble {
+    max-width: 88%;
+  }
+
+  .ai-composer-hint {
+    text-align: left;
+  }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .roi-sub-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .sample-nav-tabs {
+    flex-direction: column;
+  }
+
+  .dash-nav-tabs {
+    padding: 8px 12px;
+  }
+
+  .dash-tab-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}

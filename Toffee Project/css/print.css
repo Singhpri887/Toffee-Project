@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Print Styles — Toffee AI Resume PDF Export
+   ========================================================================== */
+
+@media print {
+  /* Hide everything except resume */
+  body > *:not(#sample-work),
+  .navbar,
+  .hero-section,
+  #telemetry,
+  .marquee-container,
+  #features,
+  #sandbox,
+  #calculator,
+  #pricing,
+  .testimonials-slider-container,
+  #faq,
+  .footer,
+  .modal-overlay,
+  .toast-container,
+  .sample-nav-tabs,
+  #samplePortfolioView,
+  .section:not(#sample-work) {
+    display: none !important;
+  }
+
+  #sample-work {
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+  }
+
+  #sampleResumeView {
+    display: block !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 20px !important;
+  }
+
+  body.printing-builder-resume #sampleResumeView,
+  body.printing-builder-resume #samplePortfolioView {
+    display: none !important;
+  }
+
+  body.printing-builder-resume .resume-builder-toolbar,
+  body.printing-builder-resume .resume-builder-form {
+    display: none !important;
+  }
+
+  body.printing-demo-resume #resumeBuilderView,
+  body.printing-demo-resume #samplePortfolioView {
+    display: none !important;
+  }
+
+  #resumeBuilderView {
+    display: block !important;
+    padding: 20px !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+  }
+
+  #resumeBuilderView > .resume-builder-toolbar,
+  #resumeBuilderView > .resume-builder-grid > .resume-builder-form {
+    display: none !important;
+  }
+
+  #resumeBuilderView > .resume-builder-grid {
+    display: block !important;
+  }
+
+  #resumeBuilderView .resume-builder-preview {
+    border: none !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+  }
+
+  #resumeBuilderView .resume-builder-preview * {
+    background-color: transparent !important;
+    color: #0F172A !important;
+  }
+
+  #resumeBuilderView .builder-preview-header,
+  #resumeBuilderView .builder-preview-header h2,
+  #resumeBuilderView .builder-preview-header p,
+  #resumeBuilderView .builder-preview-header div,
+  #resumeBuilderView .resume-builder-preview h4,
+  #resumeBuilderView .resume-builder-preview p,
+  #resumeBuilderView .resume-builder-preview strong,
+  #resumeBuilderView .resume-builder-preview span {
+    color: #0F172A !important;
+  }
+
+  #resumeBuilderView .builder-preview-header p,
+  #resumeBuilderView .resume-builder-preview h4 {
+    color: #4F46E5 !important;
+  }
+
+  #resumeBuilderView .builder-preview-skills span {
+    background: #F1F5F9 !important;
+    border-color: #CBD5E1 !important;
+  }
+
+  .resume-header-row {
+    border-bottom: 2px solid #CBD5E1 !important;
+  }
+
+  .resume-header-row button {
+    display: none !important;
+  }
+
+  .candidate-info h3 {
+    color: #0F172A !important;
+    font-size: 1.5rem !important;
+  }
+
+  .candidate-title {
+    color: #4F46E5 !important;
+  }
+
+  .timeline-list::before {
+    background: #CBD5E1 !important;
+  }
+
+  .timeline-dot {
+    border-color: #4F46E5 !important;
+    background: #FFFFFF !important;
+  }
+
+  .timeline-role,
+  .timeline-company,
+  h4 {
+    color: #0F172A !important;
+  }
+
+  .timeline-company {
+    color: #4F46E5 !important;
+  }
+
+  .skill-pill {
+    background: #F1F5F9 !important;
+    border: 1px solid #CBD5E1 !important;
+    color: #0F172A !important;
+  }
+
+  .badge {
+    background: #F1F5F9 !important;
+    border: 1px solid #CBD5E1 !important;
+    color: #0F172A !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    margin: 20mm;
+    size: A4 portrait;
+  }
+}

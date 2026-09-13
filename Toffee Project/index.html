@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toffee AI - Real-Time SaaS & Cloud Operations Platform</title>
+  <meta name="description"
+    content="Toffee Project empowers high-growth engineering teams to build, scale, and automate cloud infrastructure with zero-latency edge pipelines and autonomous AI agents.">
+  <meta name="keywords"
+    content="SaaS platform, cloud orchestration, autonomous AI, microservices, zero-trust security, edge computing, developer tools">
+  <meta property="og:title" content="Toffee Project - Real-Time SaaS & Cloud Operations Platform">
+  <meta property="og:description"
+    content="Empowering engineering teams to build, scale, and automate cloud infrastructure with sub-millisecond edge pipelines.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css?v=5">
+  <link rel="stylesheet" href="css/responsive.css?v=5">
+  <link rel="stylesheet" href="css/print.css?v=4">
+  <link rel="stylesheet" href="css/ai-popup.css?v=5">
+  <link rel="stylesheet" href="css/auth-voice.css?v=1">
+  <link rel="stylesheet" href="css/doc-reader.css?v=1">
+
+  <!-- Free Open-Source OCR Engine (Tesseract.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Toffee Project Platform",
+    "operatingSystem": "All Cloud Environments",
+    "applicationCategory": "DeveloperApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "29.00",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1420"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- ========================================================================
+       1. Navigation Bar
+       ======================================================================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-brand" aria-label="Toffee Home">
+        <div class="nav-brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <span>Toffee<span style="color: var(--primary-light);">.ai</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#telemetry" class="nav-link">Telemetry</a></li>
+        <li><a href="#doc-reader" class="nav-link" style="color: #38BDF8; font-weight: 700;">📄 AI Document Reader</a></li>
+        <li><a href="#voice-biometrics" class="nav-link" style="color: #818CF8; font-weight: 700;">🎙️ Voice Biometrics</a></li>
+        <li><a href="#data-hub" class="nav-link">📊 Data Hub</a></li>
+        <li><a href="#db-studio" class="nav-link" style="color: #10B981; font-weight: 700;">🗄️ DB Studio</a></li>
+        <li><a href="#sandbox" class="nav-link">Sandbox</a></li>
+        <li><a href="#calculator" class="nav-link">ROI Calculator</a></li>
+        <li><a href="#sample-work" class="nav-link" style="color: var(--primary-light); font-weight: 700;">Resume Kit</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Guest Auth Group (Logged Out) -->
+        <div id="headerGuestAuthGroup" style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-secondary btn-sm open-auth-modal" data-tab="login">Log In</button>
+          <button class="btn btn-primary btn-sm btn-glow open-auth-modal" data-tab="signup">Sign Up</button>
+        </div>
+
+        <!-- User Auth Group (Logged In) -->
+        <div id="headerUserAuthGroup" class="user-profile-menu" style="display: none;">
+          <button class="user-avatar-btn" id="headerUserAvatarBtn">
+            <span class="user-avatar-icon" id="headerUserInitial">A</span>
+            <span id="headerUserName">Alex</span>
+            <span class="badge badge-emerald" id="userVoiceStatusBadge" style="font-size:0.65rem;padding:1px 6px;">🎙️ Voice Active</span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="user-dropdown-menu" id="userDropdownMenu">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-name" id="userDropdownName">Alex Mercer</div>
+              <div class="user-dropdown-email" id="userDropdownEmail">alex@toffee.ai</div>
+            </div>
+            <a href="#doc-reader" class="user-dropdown-item">📄 My Scanned Documents</a>
+            <a href="#voice-biometrics" class="user-dropdown-item">🎙️ Voice Biometrics Hub</a>
+            <a href="#data-hub" class="user-dropdown-item">📊 SQLite Activity Logs</a>
+            <button class="user-dropdown-item logout btn-auth-logout">🚪 Log Out</button>
+          </div>
+        </div>
+
+        <button class="mobile-nav-toggle" aria-label="Open Navigation Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       2. Hero Section
+       ======================================================================== -->
+  <header class="hero-section">
+    <div class="container">
+      <div class="hero-pill fade-in-up">
+        <span class="pulse-dot"></span>
+        <span>Introducing Toffee 2.0 - Real-Time Multi-Cloud SaaS Engine</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+
+      <h1 class="hero-title fade-in-up">
+        Build, Scale & Monitor SaaS Infrastructure in <span class="gradient-accent-text">Real Time</span>
+      </h1>
+
+      <p class="hero-subtitle fade-in-up">
+        Toffee unifies live telemetry, AI pipeline orchestration, and zero-trust security into one operational console.
+        Watch clusters, latency, savings, and workflow events update from the Python backend as the page runs.
+      </p>
+
+      <div class="hero-cta-group fade-in-up">
+        <button class="btn btn-primary btn-lg btn-glow open-demo-modal" id="heroStartTrialBtn">
+          <span>Start 14-Day Free Trial</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+        <button class="btn btn-secondary btn-lg open-video-modal" id="heroWatchDemoBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Watch 2-Min Interactive Demo</span>
+        </button>
+      </div>
+
+      <!-- Trust Bar -->
+      <div class="hero-trust-bar fade-in-up">
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>SOC-2 Type II Certified</span>
+        </div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>99.999% SLA Uptime</span>
+        </div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+          <span>Trusted by 50,000+ Engineers</span>
+        </div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <span>4.9 / 5.0 on G2 & Capterra</span>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           3. Interactive SaaS Dashboard Telemetry Preview
+           ==================================================================== -->
+      <section id="telemetry" class="dashboard-preview-wrapper fade-in-up">
+        <!-- Live Interactive Simulation Deck (Powered by Python Backend) -->
+        <div class="sim-deck-container">
+          <div class="sim-deck-header">
+            <div class="sim-deck-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>Interactive Cluster Simulation Deck</span>
+              <span style="font-size: 0.78rem; font-weight: 500; color: var(--text-muted);">(Direct Python API
+                Control)</span>
+            </div>
+            <div class="sim-status-badges">
+              <span class="sim-status-pill" id="simCurrentModePill">
+                <span class="pulse-dot"></span>
+                <span id="simModeText">Nominal Baseline</span>
+              </span>
+              <span class="sim-status-pill is-info" id="simPythonHostPill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span id="pythonHostText">Python 3.14 • Threading Engine</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="sim-controls-grid">
+            <button class="sim-btn sim-btn-spike" data-action="spike" id="btnSimSpike"
+              title="Simulate massive surge to 10,000 req/s">
+              <span>🚀 Traffic Spike (+10k req/s)</span>
+            </button>
+            <button class="sim-btn sim-btn-chaos" data-action="chaos" id="btnSimChaos"
+              title="Simulate primary zone failure in us-east-1">
+              <span>⚡ Regional Chaos (Failover)</span>
+            </button>
+            <button class="sim-btn sim-btn-ddos" data-action="ddos" id="btnSimDdos"
+              title="Simulate Layer 7 bot flood attack and edge defense">
+              <span>🛡️ DDoS Attack & WAF</span>
+            </button>
+            <button class="sim-btn sim-btn-canary" data-action="canary" id="btnSimCanary"
+              title="Deploy canary worker build v2.4.0">
+              <span>🔄 Canary Rollout (v2.4)</span>
+            </button>
+            <button class="sim-btn sim-btn-reset" data-action="nominal" id="btnSimReset"
+              title="Return cluster to nominal steady state">
+              <span>↺ Reset Baseline</span>
+            </button>
+          </div>
+
+          <!-- Canary Rollout Progress Bar -->
+          <div class="canary-progress-wrapper" id="canaryProgressWrapper">
+            <div
+              style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: var(--font-mono); margin-bottom: 4px; color: var(--accent-cyan);">
+              <span>Canary Fleet Rollout Progress (v2.4.0)</span>
+              <span id="canaryProgressPct">0%</span>
+            </div>
+            <div class="canary-progress-bar-bg">
+              <div class="canary-progress-fill" id="canaryProgressFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-window">
+          <!-- Window Header -->
+          <div class="dash-header">
+            <div class="dash-dots">
+              <span class="dash-dot red"></span>
+              <span class="dash-dot yellow"></span>
+              <span class="dash-dot green"></span>
+            </div>
+            <div class="dash-search-bar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>https://console.toffee.ai/cluster-us-east-1</span>
+            </div>
+            <div class="dash-status">
+              <span class="badge badge-emerald stream-status-badge" id="dashStreamStatus" data-state="warning">
+                <span class="pulse-dot" id="dashStreamDot" data-state="warning"></span>
+                <span id="dashStreamStatusText">Connecting</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Tab Navigation -->
+          <div class="dash-nav-tabs">
+            <button class="dash-tab-btn active" data-tab="analytics">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Real-Time Analytics</span>
+            </button>
+            <button class="dash-tab-btn" data-tab="automation">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>AI Agent Automation</span>
+            </button>
+            <button class="dash-tab-btn" data-tab="security">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>Zero-Trust Security</span>
+            </button>
+          </div>
+
+          <!-- Body -->
+          <div class="dash-body">
+            <!-- 4 Metric Cards -->
+            <div class="dash-metrics-grid">
+              <div class="dash-metric-card">
+                <span class="dash-metric-label">Active Edge Clusters</span>
+                <span class="dash-metric-value" id="dashActiveClusters">148 Nodes</span>
+                <span class="dash-metric-trend trend-up">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                  +12% vs last week
+                </span>
+              </div>
+              <div class="dash-metric-card">
+                <span class="dash-metric-label">Real-Time Throughput</span>
+                <span class="dash-metric-value" id="dashLiveThroughput">185 req/s</span>
+                <span class="dash-metric-trend trend-up">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                  <span id="dashSuccessRate">99.999% Success</span>
+                </span>
+              </div>
+              <div class="dash-metric-card">
+                <span class="dash-metric-label">P99 Edge Latency</span>
+                <span class="dash-metric-value" id="dashLatency">14.2 ms</span>
+                <span class="dash-metric-trend trend-up">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                  -35% latency drop
+                </span>
+              </div>
+              <div class="dash-metric-card">
+                <span class="dash-metric-label">Autonomous Cost Savings</span>
+                <span class="dash-metric-value" id="dashCostSavings">$42,850</span>
+                <span class="dash-metric-trend trend-up">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                  Auto-optimized
+                </span>
+              </div>
+            </div>
+
+            <div class="dash-signal-grid" aria-label="Live telemetry stream metadata">
+              <div class="signal-cell">
+                <span>Region</span>
+                <strong id="dashLiveRegion">us-east-1</strong>
+              </div>
+              <div class="signal-cell">
+                <span>Event</span>
+                <strong id="dashEventId">#0</strong>
+              </div>
+              <div class="signal-cell">
+                <span>Last Tick</span>
+                <strong id="dashLastTick">--:--:--</strong>
+              </div>
+              <div class="signal-cell">
+                <span>Mode</span>
+                <strong>Server-Sent Events</strong>
+              </div>
+            </div>
+
+            <!-- Real-Time Cluster Topology Strip -->
+            <div class="topology-strip" id="clusterTopologyStrip" aria-label="Real-time multi-cloud cluster topology">
+              <div class="topology-node active-route" id="topoClient">
+                <span class="topology-node-title">Client Edge</span>
+                <span class="topology-node-val">HTTP/SSE</span>
+              </div>
+              <div class="topology-link">
+                <div class="topology-link-line"><span class="topology-pulse-dot"></span></div>
+              </div>
+              <div class="topology-node active-route" id="topoGateway">
+                <span class="topology-node-title">Python Gateway</span>
+                <span class="topology-node-val">Thread Pool</span>
+              </div>
+              <div class="topology-link">
+                <div class="topology-link-line"><span class="topology-pulse-dot" style="animation-delay: 0.5s;"></span>
+                </div>
+              </div>
+              <div class="topology-node active-route" id="topoUsEast">
+                <span class="topology-node-title">us-east-1</span>
+                <span class="topology-node-val" id="topoUsEastStatus">Nominal</span>
+              </div>
+              <div class="topology-link">
+                <div class="topology-link-line"><span class="topology-pulse-dot" style="animation-delay: 1s;"></span>
+                </div>
+              </div>
+              <div class="topology-node" id="topoEuCentral">
+                <span class="topology-node-title">eu-central-1</span>
+                <span class="topology-node-val" id="topoEuCentralStatus">Hot Standby</span>
+              </div>
+              <div class="topology-link">
+                <div class="topology-link-line"><span class="topology-pulse-dot" style="animation-delay: 1.5s;"></span>
+                </div>
+              </div>
+              <div class="topology-node" id="topoApSouth">
+                <span class="topology-node-title">ap-south-1</span>
+                <span class="topology-node-val" id="topoApSouthStatus">Hot Standby</span>
+              </div>
+            </div>
+
+            <!-- Main Chart & Live Activity Feed -->
+            <div class="dash-chart-feed-grid">
+              <div class="dash-chart-container">
+                <div class="dash-chart-header">
+                  <span class="dash-chart-title" id="dashChartTitle">Global API Throughput & Latency (Live SSE)</span>
+                  <span class="badge badge-indigo">Live Canvas Stream</span>
+                </div>
+                <div class="dash-chart-canvas-wrapper">
+                  <canvas id="telemetryChart"></canvas>
+                </div>
+              </div>
+
+              <div class="dash-feed-container">
+                <div class="dash-feed-header">
+                  <span style="font-weight: 700; font-size: 0.95rem;">Live Cluster Feed</span>
+                  <span class="pulse-dot"></span>
+                </div>
+                <div class="dash-feed-list" id="dashFeedList">
+                  <div class="feed-item success">
+                    <div class="feed-icon"><span class="pulse-dot"></span></div>
+                    <div class="feed-text">Edge cache hit ratio reached 99.4% in eu-central-1</div>
+                    <div class="feed-time">1s ago</div>
+                  </div>
+                  <div class="feed-item">
+                    <div class="feed-icon"><span class="pulse-dot"></span></div>
+                    <div class="feed-text">Autonomous worker dispatched 400 LLM tasks</div>
+                    <div class="feed-time">4s ago</div>
+                  </div>
+                  <div class="feed-item alert">
+                    <div class="feed-icon"><span class="pulse-dot"></span></div>
+                    <div class="feed-text">Auto-scaled 4 standby microservices in us-west</div>
+                    <div class="feed-time">9s ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       4. Trusted By Logo Marquee
+       ======================================================================== -->
+  <section class="marquee-container" aria-label="Companies that trust Toffee">
+    <div class="marquee-content">
+      <div class="client-logo-item">⚡ VERCEL</div>
+      <div class="client-logo-item">☁️ CLOUDFLARE</div>
+      <div class="client-logo-item">🛡️ DATADOG</div>
+      <div class="client-logo-item">💳 STRIPE</div>
+      <div class="client-logo-item">🚀 SUPABASE</div>
+      <div class="client-logo-item">💎 SNOWFLAKE</div>
+      <div class="client-logo-item">📐 LINEAR</div>
+      <div class="client-logo-item">🔨 RETOOL</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="client-logo-item">⚡ VERCEL</div>
+      <div class="client-logo-item">☁️ CLOUDFLARE</div>
+      <div class="client-logo-item">🛡️ DATADOG</div>
+      <div class="client-logo-item">💳 STRIPE</div>
+      <div class="client-logo-item">🚀 SUPABASE</div>
+      <div class="client-logo-item">💎 SNOWFLAKE</div>
+      <div class="client-logo-item">📐 LINEAR</div>
+      <div class="client-logo-item">🔨 RETOOL</div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. Bento-Grid Features
+       ======================================================================== -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag">Core Capabilities</div>
+        <h2>Engineered for High-Velocity SaaS Architecture</h2>
+        <p>Everything you need to orchestrate distributed cloud infrastructure, microservices, and autonomous workflows
+          with enterprise resilience.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Bento 1 (Span 2) -->
+        <div class="bento-card col-span-2 fade-in-up">
+          <div class="bento-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+            </svg>
+          </div>
+          <h3>Autonomous Multi-Cloud Fleet & Edge Routing</h3>
+          <p>Dynamically distribute compute loads across AWS, GCP, and Azure with automatic failover and spot-instance
+            arbitrage that eliminates cloud waste.</p>
+          <div class="bento-visual">
+            <div class="code-snippet">
+              <span style="color: #F43F5E;">// toffee.config.ts</span><br>
+              <span style="color: #6366F1;">export default</span> defineConfig({<br>
+              &nbsp;&nbsp;regions: [<span style="color: #10B981;">'us-east'</span>, <span
+                style="color: #10B981;">'eu-central'</span>, <span style="color: #10B981;">'ap-southeast'</span>],<br>
+              &nbsp;&nbsp;autoScale: { minNodes: 3, maxNodes: 50, spotSavings: <span style="color: #06B6D4;">true</span>
+              },<br>
+              &nbsp;&nbsp;zeroTrustPolicy: <span style="color: #10B981;">'STRICT_SOC2'</span><br>
+              });
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 2 -->
+        <div class="bento-card fade-in-up">
+          <div class="bento-icon cyan">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+          </div>
+          <h3>Sub-Millisecond Edge Vector Memory</h3>
+          <p>Native low-latency key-value & vector storage embedded across 140+ global points of presence for instant
+            RAG responses.</p>
+          <div class="bento-visual" style="text-align: center;">
+            <div style="font-size: 2.2rem; font-weight: 800; color: var(--accent-cyan);">0.8 ms</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Average Edge Cache Retrieval</div>
+          </div>
+        </div>
+
+        <!-- Bento 3 -->
+        <div class="bento-card fade-in-up">
+          <div class="bento-icon emerald">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>Zero-Trust Identity & API WAF</h3>
+          <p>End-to-end mTLS authentication, automated key rotation, and AI bot mitigation defending your endpoints
+            around the clock.</p>
+          <div class="bento-visual">
+            <span class="badge badge-emerald"><span class="pulse-dot"></span> 100% DDoS Resilient</span>
+          </div>
+        </div>
+
+        <!-- Bento 4 (Span 2) -->
+        <div class="bento-card col-span-2 fade-in-up">
+          <div class="bento-icon violet">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3>Autonomous Agent Workflows & Event Pipelines</h3>
+          <p>Chain multi-modal AI agents directly into your webhook triggers. Trigger background data enrichment,
+            invoice reconciliations, or incident triaging automatically.</p>
+          <div class="bento-visual">
+            <div style="display: flex; gap: 10px; align-items: center; justify-content: space-around; flex-wrap: wrap;">
+              <span class="badge badge-indigo">Webhook Ingest</span>
+              <span>➔</span>
+              <span class="badge badge-cyan">AI Model Inference</span>
+              <span>➔</span>
+              <span class="badge badge-emerald">DB Sync & Alert</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. Toffee AI Copilot – Floating Chat Popup (triggered by robot button)
+       ======================================================================== -->
+
+  <!-- Floating Robot Launcher & Speech Bubble -->
+  <div class="ai-robot-launcher-wrapper" id="aiRobotLauncherWrapper">
+    <!-- Floating Greeting Speech Bubble -->
+    <div class="ai-robot-speech-bubble" id="aiRobotSpeechBubble" role="status" aria-live="polite">
+      <div class="ai-bubble-content">
+        <span class="ai-bubble-badge"><span class="ai-bubble-live-dot"></span>AI Online</span>
+        <span class="ai-bubble-text">Need help scaling? Ask Toffee Bot! 👋</span>
+      </div>
+      <button class="ai-bubble-dismiss" id="aiBubbleDismiss" aria-label="Dismiss greeting" title="Dismiss">×</button>
+    </div>
+
+    <!-- Floating Robot Button -->
+    <button class="ai-floating-launcher" id="aiFloatingLauncher" aria-label="Open Toffee AI assistant"
+      title="Talk to Toffee AI">
+      <!-- Ion Thruster Hover Glow -->
+      <span class="ai-robot-thruster" aria-hidden="true">
+        <span class="ai-thruster-glow"></span>
+      </span>
+
+      <!-- 3D Cyber-Robot Character -->
+      <span class="ai-launcher-robot" aria-hidden="true">
+        <!-- Antenna with pulsing neon beacon -->
+        <span class="ai-robot-antenna">
+          <span class="ai-antenna-orb"></span>
+          <span class="ai-antenna-pulse"></span>
+        </span>
+
+        <!-- Cyber Ears / Headphone Nodes -->
+        <span class="ai-robot-ear ai-robot-ear-left"></span>
+        <span class="ai-robot-ear ai-robot-ear-right"></span>
+
+        <!-- Robot Head & Curved OLED Visor -->
+        <span class="ai-robot-head">
+          <span class="ai-robot-face">
+            <i class="ai-eye ai-eye-left"></i>
+            <i class="ai-eye ai-eye-right"></i>
+            <b class="ai-mouth"></b>
+          </span>
+        </span>
+
+        <!-- Torso with Glowing AI Core / Arc Reactor -->
+        <span class="ai-robot-torso">
+          <span class="ai-robot-core"></span>
+          <span class="ai-robot-badge-accent"></span>
+        </span>
+
+        <!-- Hovering Articulated Robotic Arms -->
+        <span class="ai-robot-arm ai-robot-arm-left">
+          <span class="ai-robot-hand"></span>
+        </span>
+        <span class="ai-robot-arm ai-robot-arm-right">
+          <span class="ai-robot-hand"></span>
+        </span>
+      </span>
+
+      <!-- Active Pulse Beacon -->
+      <span class="ai-launcher-pulse" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <!-- AI Chat Popup -->
+  <div class="ai-chat-popup" id="aiChatPopup" role="dialog" aria-modal="true" aria-label="Toffee AI Assistant"
+    style="display:none;">
+    <!-- Popup Header -->
+    <div class="ai-popup-header">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="ai-robot-avatar" aria-hidden="true">
+          <span class="ai-robot-antenna">
+            <span class="ai-antenna-orb"></span>
+          </span>
+          <span class="ai-robot-ear ai-robot-ear-left"></span>
+          <span class="ai-robot-ear ai-robot-ear-right"></span>
+          <span class="ai-robot-head">
+            <span class="ai-robot-face">
+              <i class="ai-eye ai-eye-left"></i>
+              <i class="ai-eye ai-eye-right"></i>
+              <b class="ai-mouth"></b>
+            </span>
+          </span>
+        </div>
+        <div>
+          <div class="ai-name-row">
+            <h3 style="font-size:1rem;font-weight:800;color:#FFF;margin:0;">Toffee AI Architect</h3>
+            <span class="ai-online-dot"></span>
+            <span style="color:#34D399;font-weight:700;font-size:0.75rem;">Online</span>
+          </div>
+          <p style="margin:0;font-size:0.78rem;color:rgba(255,255,255,0.55);">Ask about cloud scaling, security, latency
+            &amp; more</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <select id="aiLanguage" class="ai-popup-lang-select" title="Response language">
+          <option value="en">🌐 EN</option>
+          <option value="hi">HI</option>
+          <option value="ur">UR</option>
+          <option value="es">ES</option>
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+          <option value="pt">PT</option>
+        </select>
+        <button class="ai-popup-close" id="aiCloseBtn" aria-label="Close chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Suggestion Chips -->
+    <div class="ai-popup-suggestions">
+      <button class="ai-suggestion"
+        data-prompt="Explain a secure multi-cloud deployment plan for a growing SaaS platform with zero downtime.">🛡️
+        Multi-Cloud Plan</button>
+      <button class="ai-suggestion"
+        data-prompt="How do I reduce cloud infrastructure spend by 40% using spot instances and workload tagging?">💰
+        Cut Cloud Costs</button>
+      <button class="ai-suggestion"
+        data-prompt="Design a low-latency edge API architecture maintaining under 15ms P99 latency globally.">⚡ Sub-15ms
+        Latency</button>
+      <button class="ai-suggestion"
+        data-prompt="How does Toffee handle automated failover from us-east-1 to eu-central-1 during chaos engineering tests?">🔄
+        Chaos Failover</button>
+    </div>
+
+    <!-- Chat Area -->
+    <article id="aiResponse" class="ai-chat ai-popup-chat" aria-live="polite">
+      <div class="ai-message ai-message-bot">
+        <div class="ai-mini-avatar">AI</div>
+        <div class="ai-bubble"><span class="ai-message-label">Toffee AI</span>
+          <p>Hi! I'm ready. Tell me what you're building, what's slow or expensive, and what outcome you need.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Composer -->
+    <div class="ai-composer ai-popup-composer">
+      <textarea id="aiPrompt" rows="2" placeholder="Ask Toffee AI or discuss your scanned document…"></textarea>
+      <button id="aiMicBtn" class="btn-icon" style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#38BDF8;font-size:16px;cursor:pointer;display:grid;place-items:center;" aria-label="Speech to text" title="Speak question">🎙️</button>
+      <button id="aiAskBtn" class="ai-send-btn" aria-label="Send message" title="Send">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+    <div class="ai-composer-hint" style="padding:6px 16px 10px;font-size:0.75rem;">Toffee AI can suggest architecture,
+      cost, security, and deployment improvements.</div>
+  </div>
+
+  <!-- Backdrop -->
+  <div class="ai-popup-backdrop" id="aiPopupBackdrop" style="display:none;"></div>
+
+  <section id="ai-copilot" style="display:none;"></section>
+
+  <!-- ========================================================================
+       7. Interactive SaaS Playground & Sandbox
+       ======================================================================== -->
+  <section id="sandbox" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag">Interactive Playground</div>
+        <h2>Test Toffee Autonomous Workflows Live</h2>
+        <p>Select a trigger event and trigger an instant pipeline execution right in your browser.</p>
+      </div>
+
+      <div class="sandbox-card fade-in-up">
+        <div class="sandbox-layout">
+          <!-- Controls -->
+          <div class="sandbox-controls">
+            <div class="control-group">
+              <label class="control-label" for="sandboxTrigger">
+                <span>1. Select Webhook Trigger</span>
+                <span class="badge badge-indigo">Step 1</span>
+              </label>
+              <select id="sandboxTrigger" class="select-input">
+                <option value="customer_signup">Customer Enterprise Signup Event (user.provisioning.started)
+                </option>
+                <option value="latency_alert">Edge Latency Spike Detected (infra.edge.latency_spike)</option>
+                <option value="financial_anomaly">Autonomous AI Fraud & Billing Audit (billing.transaction.audit)
+                </option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="sandboxAction">
+                <span>2. Autonomous AI Action</span>
+                <span class="badge badge-cyan">Step 2</span>
+              </label>
+              <select id="sandboxAction" class="select-input">
+                <option value="ai_agent">Auto-Provision Dedicated Edge Node & Allocate 16 vCPU</option>
+                <option value="failover">Reroute Global Traffic via Sub-Millisecond Anycast Gateway</option>
+                <option value="fraud_audit">Verify SOC-2 Compliance Hash & Issue Encrypted Invoice</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="sandboxModel">
+                <span>3. Execution Engine</span>
+              </label>
+              <select id="sandboxModel" class="select-input">
+                <option value="Toffee-Neural-v3">Toffee-Neural-v3 (Optimized Edge Model)</option>
+                <option value="Toffee-Turbo-Edge">Toffee-Turbo-Edge (15ms Response Time)</option>
+              </select>
+            </div>
+
+            <div class="sandbox-workflow-steps">
+              <div class="workflow-step active-step" id="wfStep1">
+                <span class="step-num">1</span>
+                <span>Event Ingest & Signature Validation</span>
+              </div>
+              <div class="workflow-step" id="wfStep2">
+                <span class="step-num">2</span>
+                <span>Autonomous Agent Pipeline Synthesis</span>
+              </div>
+              <div class="workflow-step" id="wfStep3">
+                <span class="step-num">3</span>
+                <span>Sub-millisecond Edge Response & DB Commit</span>
+              </div>
+            </div>
+
+            <button id="sandboxRunBtn" class="btn btn-primary btn-lg btn-glow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>Execute Live Workflow</span>
+            </button>
+          </div>
+
+          <!-- Output Terminal -->
+          <div class="sandbox-output">
+            <div class="output-header">
+              <span>LIVE TELEMETRY STREAM (JSON)</span>
+              <span class="badge badge-emerald">Ready</span>
+            </div>
+            <pre class="output-content" id="sandboxJsonOutput">// Click 'Execute Live Workflow' to dispatch real-time pipeline...
+// Awaiting input payload.</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. AI Document Reader & Optical Character Recognition (OCR) Engine
+       ======================================================================== -->
+  <section id="doc-reader" class="section doc-reader-section" style="background: var(--bg-primary);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38BDF8;">AI Vision & Recognition</div>
+        <h2>AI Document Reader & Entity Extractor</h2>
+        <p>Drop any invoice, server log, receipt, or technical document. Our open-source OCR engine automatically extracts text, parses structured entities, and reads aloud with speech synthesis.</p>
+      </div>
+
+      <div class="doc-reader-card fade-in-up">
+        <!-- Preset Templates -->
+        <div class="doc-presets-bar">
+          <span class="doc-presets-label">⚡ Try Sample Presets:</span>
+          <button class="doc-preset-btn active" data-preset="invoice">🧾 Cloud Infrastructure Invoice</button>
+          <button class="doc-preset-btn" data-preset="cluster_log">🖥️ Kubernetes Telemetry Log</button>
+          <button class="doc-preset-btn" data-preset="sla">📜 Zero-Trust SLA Agreement</button>
+        </div>
+
+        <div class="doc-workbench-grid">
+          <!-- Left Column: Dropzone & Image Scanner Preview -->
+          <div class="doc-dropzone-container">
+            <div class="doc-dropzone" id="docDropzone">
+              <input type="file" id="docFileInput" accept="image/*,application/pdf" style="display:none;">
+              <span class="doc-dropzone-icon">📄</span>
+              <h4>Drag & Drop Document / Image Here</h4>
+              <p>Supports PNG, JPG, WebP, Invoices, Receipts & Server Logs</p>
+              <button class="btn btn-sm btn-outline" style="margin-top:14px;pointer-events:none;">Browse Local Files</button>
+            </div>
+
+            <!-- Preview Box with Laser Scanner -->
+            <div class="doc-preview-wrapper" id="docPreviewWrapper">
+              <img id="docPreviewImg" class="doc-preview-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'><rect width='400' height='260' fill='%230b1120'/><text x='50%25' y='50%25' fill='%236366f1' font-family='sans-serif' font-size='16' text-anchor='middle'>📄 Document Image Preview Area</text></svg>" alt="Document Preview">
+              <div class="doc-scanner-laser" id="docScannerLaser"></div>
+            </div>
+
+            <!-- OCR Progress Bar -->
+            <div class="doc-ocr-progress" id="docOcrProgress">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:#E2E8F0;font-weight:700;">
+                <span id="docProgressText">Neural OCR Scanning…</span>
+                <span>Tesseract Engine</span>
+              </div>
+              <div class="doc-progress-bar">
+                <div class="doc-progress-fill" id="docProgressFill"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Extracted Text, Entities & AI Actions -->
+          <div class="doc-results-panel">
+            <div class="doc-results-header">
+              <div class="doc-results-title">
+                <span>🤖 Extracted Content & NLP Entities</span>
+              </div>
+              <div class="doc-actions-group">
+                <button class="doc-action-btn" id="btnCopyDocText" title="Copy raw text">📋 Copy</button>
+                <button class="doc-action-btn" id="btnSaveDocToDb" title="Save to SQLite database">💾 Save to DB</button>
+                <button class="doc-action-btn primary" id="btnAskAiDoc" title="Ask Toffee Copilot about this doc">💬 Ask AI Copilot</button>
+              </div>
+            </div>
+
+            <!-- Detected Entities (Amounts, Dates, Emails, etc.) -->
+            <div>
+              <div style="font-size:0.75rem;font-weight:800;color:#94A3B8;text-transform:uppercase;margin-bottom:6px;">Detected Structured Entities:</div>
+              <div class="doc-entities-wrapper" id="docEntitiesWrapper">
+                <span class="doc-entity-chip amount">💰 $14,850.00</span>
+                <span class="doc-entity-chip date">📅 September 10, 2026</span>
+                <span class="doc-entity-chip email">✉️ billing@toffee.ai</span>
+                <span class="doc-entity-chip phone">📞 +1-800-863-3332</span>
+              </div>
+            </div>
+
+            <!-- Extracted Raw Text Display -->
+            <textarea id="docExtractedText" class="doc-extracted-textarea" spellcheck="false" placeholder="Recognized document text will appear here automatically…"></textarea>
+
+            <!-- AI Summary Box -->
+            <div class="doc-summary-box">
+              <div class="doc-summary-header">
+                <span>⚡ AI Document Executive Summary</span>
+              </div>
+              <div id="docSummaryText">Production cloud services invoice totaling $14,850.00 for edge telemetry, chaos failover, biometric security, and AI Copilot API.</div>
+            </div>
+
+            <!-- Text to Speech Audio Controls -->
+            <div class="doc-tts-bar">
+              <button class="doc-tts-btn" id="btnDocTtsPlay" aria-label="Play audio narration" title="Read Aloud">▶️</button>
+              <div class="doc-tts-status" id="docTtsStatus">Click Play to hear AI speech synthesis read this document aloud.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. Voice Recognition & Biometrics Security Lab
+       ======================================================================== -->
+  <section id="voice-biometrics" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag" style="background: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.4); color: #818CF8;">Acoustic Biometrics</div>
+        <h2>Voice Recognition & Passphrase Unlock Hub</h2>
+        <p>Experience zero-trust biometric authentication powered by Web Audio API spectral frequency analysis and speech acoustic vector fingerprinting.</p>
+      </div>
+
+      <div class="bento-grid" style="grid-template-columns: 1fr 1fr; margin-top:32px;">
+        <!-- Card 1: Live Voice Enrollment & Spectrum Analysis -->
+        <div class="bento-card fade-in-up">
+          <div class="bento-icon">🎙️</div>
+          <h3>1. Live Voice Biometric Enrollment</h3>
+          <p>Record your personal voice signature. The system analyzes frequency bins, spectral centroid, and energy envelope to create a biometric embedding in SQLite.</p>
+
+          <div class="voice-biometric-box">
+            <div style="font-size:0.8rem;color:#CBD5E1;font-weight:700;">Target Passphrase to Speak:</div>
+            <div class="voice-passphrase-display">"My voice is my secure password in Toffee AI"</div>
+
+            <!-- Waveform Canvas -->
+            <canvas id="voiceEnrollWaveformCanvas" class="voice-waveform-canvas" width="420" height="80"></canvas>
+
+            <button id="btnVoiceEnrollRecord" class="voice-record-btn" aria-label="Start Voice Recording" title="Click to Record Voice">🎙️</button>
+            <div class="voice-status-text" id="voiceEnrollStatusText">Click mic and speak the passphrase aloud</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Biometric Verification Engine & Security Specs -->
+        <div class="bento-card fade-in-up">
+          <div class="bento-icon">🛡️</div>
+          <h3>2. Zero-Trust Biometric Vector Engine</h3>
+          <p>How Toffee AI validates speech identity without transmitting raw audio files:</p>
+
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+            <div style="background:rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;">
+              <strong style="color:#38BDF8;font-size:0.88rem;">1. Acoustic Spectral Analysis</strong>
+              <p style="font-size:0.8rem;color:#94A3B8;margin:4px 0 0;">Normalized 10-bin frequency distribution computed in real time via browser AudioContext AnalyserNode.</p>
+            </div>
+
+            <div style="background:rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;">
+              <strong style="color:#10B981;font-size:0.88rem;">2. Cosine Similarity Vector Matching</strong>
+              <p style="font-size:0.8rem;color:#94A3B8;margin:4px 0 0;">Backend compares spoken acoustic vectors against SQLite biometric profiles with a >=70% confidence threshold.</p>
+            </div>
+
+            <div style="background:rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;">
+              <strong style="color:#A78BFA;font-size:0.88rem;">3. Persistent SQLite Security</strong>
+              <p style="font-size:0.8rem;color:#94A3B8;margin:4px 0 0;">Voice profiles and audit logs are safely stored in <code style="color:#38BDF8;">toffee.db</code> with cryptographic session tokens.</p>
+            </div>
+
+            <div style="text-align:center;margin-top:8px;">
+              <button class="btn btn-primary btn-glow open-auth-modal" data-tab="voice" style="width:100%;">Test Voice Login Unlock Now 🔓</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. SQLite Database & Activity Data Hub
+       ======================================================================== -->
+  <section id="data-hub" class="section" style="background: var(--bg-primary);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34D399;">Persistent Storage</div>
+        <h2>SQLite Database & Activity Data Hub</h2>
+        <p>Explore persistent tables, live telemetry metrics, OCR document history, and immutable audit logs stored in <code style="color:var(--primary-light);">toffee.db</code>.</p>
+      </div>
+
+      <div class="dash-metrics-grid fade-in-up" style="margin-top:32px;">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Registered Users</span>
+            <span class="metric-badge positive">Active</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value" id="dbUsersCount">1</span>
+            <span class="metric-unit">Accounts</span>
+          </div>
+          <div class="metric-footer">
+            <span>PBKDF2-SHA256 Encrypted</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Voice Biometric Profiles</span>
+            <span class="metric-badge positive">Enrolled</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value" id="dbVoiceCount" style="color:#818CF8;">1</span>
+            <span class="metric-unit">Signatures</span>
+          </div>
+          <div class="metric-footer">
+            <span>Acoustic Vectors in SQLite</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Scanned OCR Documents</span>
+            <span class="metric-badge positive">Processed</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value" id="dbDocsCount" style="color:#38BDF8;">1</span>
+            <span class="metric-unit">Docs</span>
+          </div>
+          <div class="metric-footer">
+            <span>Structured NLP Entities</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Audit Activity Logs</span>
+            <span class="metric-badge positive">Logged</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value" id="dbLogsCount" style="color:#10B981;">1</span>
+            <span class="metric-unit">Events</span>
+          </div>
+          <div class="metric-footer">
+            <span>Zero-Data Loss SQLite Store</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scanned Documents Library in SQLite -->
+      <div class="bento-card fade-in-up" style="margin-top:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <h3 style="font-size:1.15rem;color:#F8FAFC;margin:0;">📁 Saved Documents Library (SQLite Store)</h3>
+          <button class="btn btn-sm btn-outline" onclick="window.ToffeeDocReader?.loadDocumentHistory()">🔄 Refresh History</button>
+        </div>
+        <div id="docHistoryList">
+          <div style="padding:16px;text-align:center;color:#94A3B8;font-size:0.85rem;">Loading documents from SQLite database…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10b. SQLite DB Studio — Live Visual Database Explorer
+       ======================================================================== -->
+  <section id="db-studio" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag" style="background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); color: #34D399;">🗄️ SQLite Studio</div>
+        <h2>Live Database Explorer</h2>
+        <p>Browse tables, view live rows, and run read-only SQL queries against <code style="color:var(--primary-light);">toffee.db</code> in real time.</p>
+      </div>
+
+      <div class="bento-card fade-in-up" style="margin-top:32px; padding:0; overflow:hidden;">
+        <!-- DB Studio Header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(2,6,23,0.5);">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:1.05rem;font-weight:800;color:#F8FAFC;">🗄️ toffee.db</span>
+            <span class="badge badge-emerald" id="dbStudioStatus" style="font-size:0.7rem;">● Connected</span>
+          </div>
+          <button class="btn btn-sm btn-outline" id="btnRefreshDbStudio">🔄 Refresh</button>
+        </div>
+
+        <div style="display:flex;min-height:420px;">
+          <!-- Tables Sidebar -->
+          <div style="width:200px;flex-shrink:0;border-right:1px solid rgba(255,255,255,0.08);background:rgba(2,6,23,0.3);padding:12px 0;">
+            <div style="font-size:0.72rem;font-weight:700;color:#64748B;letter-spacing:0.08em;text-transform:uppercase;padding:0 14px 10px;">Tables</div>
+            <div id="dbTableList" style="display:flex;flex-direction:column;gap:2px;padding:0 8px;">
+              <div style="padding:10px;text-align:center;color:#64748B;font-size:0.8rem;">Loading…</div>
+            </div>
+          </div>
+
+          <!-- Main Panel -->
+          <div style="flex:1;display:flex;flex-direction:column;min-width:0;">
+            <!-- Tab Bar -->
+            <div style="display:flex;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(2,6,23,0.2);">
+              <button class="db-studio-tab active" id="dbTabData" onclick="window.DbStudio?.switchTab('data')">📊 Table Data</button>
+              <button class="db-studio-tab" id="dbTabQuery" onclick="window.DbStudio?.switchTab('query')">⚡ SQL Console</button>
+            </div>
+
+            <!-- Table Data View -->
+            <div id="dbDataPanel" style="flex:1;overflow:auto;padding:16px;">
+              <div style="text-align:center;color:#64748B;padding:40px;">← Select a table to explore its data</div>
+            </div>
+
+            <!-- SQL Console View -->
+            <div id="dbQueryPanel" style="flex:1;display:none;flex-direction:column;padding:16px;gap:12px;">
+              <div style="font-size:0.8rem;font-weight:700;color:#94A3B8;margin-bottom:4px;">⚡ Read-Only SQL Console</div>
+              <textarea id="dbSqlInput" style="width:100%;height:90px;background:#020617;border:1px solid rgba(99,102,241,0.4);border-radius:10px;padding:12px;color:#F8FAFC;font-family:monospace;font-size:0.85rem;resize:vertical;outline:none;" placeholder="SELECT * FROM users LIMIT 10;"></textarea>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <button class="btn btn-primary btn-sm btn-glow" id="btnRunSql">▶ Run Query</button>
+                <span style="font-size:0.75rem;color:#64748B;">Only SELECT queries allowed. No data modification.</span>
+              </div>
+              <div id="dbQueryResult" style="overflow:auto;max-height:260px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gateway Settings Card -->
+      <div class="bento-card fade-in-up" id="gatewaySettingsCard" style="margin-top:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+          <div>
+            <h3 style="font-size:1.1rem;font-weight:800;color:#F8FAFC;margin:0;">⚙️ Email &amp; SMS Gateway Settings</h3>
+            <p style="font-size:0.82rem;color:#94A3B8;margin:4px 0 0;">Configure Gmail SMTP (App Password) to deliver real OTP codes. SMS gateway is optional.</p>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span id="smtpStatusBadge" class="badge" style="font-size:0.75rem;">⏳ Loading…</span>
+            <button class="btn btn-sm btn-primary" id="btnSaveGateway">💾 Save Config</button>
+            <button class="btn btn-sm btn-outline" id="btnTestEmail">🧪 Test Email</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;color:#CBD5E1;display:block;margin-bottom:5px;">SMTP Host</label>
+            <input id="gwSmtpHost" type="text" class="auth-input" placeholder="smtp.gmail.com" style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;color:#CBD5E1;display:block;margin-bottom:5px;">SMTP Port</label>
+            <input id="gwSmtpPort" type="number" class="auth-input" placeholder="465" style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;color:#CBD5E1;display:block;margin-bottom:5px;">Gmail / SMTP User (Email)</label>
+            <input id="gwSmtpUser" type="email" class="auth-input" placeholder="yourname@gmail.com" style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;color:#CBD5E1;display:block;margin-bottom:5px;">Google App Password</label>
+            <input id="gwSmtpPass" type="password" class="auth-input" placeholder="xxxx xxxx xxxx xxxx" style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;color:#CBD5E1;display:block;margin-bottom:5px;">From Name / Display</label>
+            <input id="gwFromEmail" type="text" class="auth-input" placeholder="Toffee AI Security" style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;color:#CBD5E1;display:block;margin-bottom:5px;">Test Email Recipient</label>
+            <input id="gwTestEmail" type="email" class="auth-input" placeholder="test@yourmail.com" style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+          <div style="grid-column:1/-1;">
+            <label style="font-size:0.78rem;font-weight:700;color:#94A3B8;display:block;margin-bottom:5px;">SMS Webhook URL (Optional — Twilio / WhatsApp API)</label>
+            <input id="gwSmsUrl" type="text" class="auth-input" placeholder="https://api.twilio.com/..." style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;color:#94A3B8;display:block;margin-bottom:5px;">SMS API Key / Auth Token</label>
+            <input id="gwSmsKey" type="password" class="auth-input" placeholder="ACxxxxxxxxxxxxxxxxx" style="font-size:0.85rem;padding:9px 12px;">
+          </div>
+        </div>
+        <div id="gatewayMsg" style="margin-top:12px;font-size:0.82rem;display:none;"></div>
+
+        <!-- Gmail App Password Guide -->
+        <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:12px;font-size:0.8rem;color:#94A3B8;line-height:1.7;">
+          <strong style="color:#818CF8;">📋 How to get Gmail App Password:</strong><br>
+          1. Go to <a href="https://myaccount.google.com/security" target="_blank" style="color:#38BDF8;">myaccount.google.com/security</a><br>
+          2. Enable 2-Step Verification → scroll to <strong style="color:#E2E8F0;">App passwords</strong><br>
+          3. Select app: <em>Mail</em>, device: <em>Windows</em> → Generate<br>
+          4. Copy the 16-character password and paste above. <strong style="color:#F59E0B;">Never use your real Gmail password!</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. Dynamic ROI & Cost-Savings Calculator
+       ======================================================================== -->
+  <section id="calculator" class="section">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag">Value Assessment</div>
+        <h2>Calculate Your Engineering ROI with Toffee</h2>
+        <p>See how much time and money your engineering team can reclaim by automating multi-cloud workflows.</p>
+      </div>
+
+      <div class="roi-card fade-in-up">
+        <div class="roi-layout">
+          <!-- Sliders -->
+          <div>
+            <div class="slider-container">
+              <div class="slider-header">
+                <span>Engineering & DevOps Team Size:</span>
+                <span class="slider-val-badge" id="teamSizeValue">25 Engineers / Ops</span>
+              </div>
+              <input type="range" id="teamSizeRange" class="custom-range" min="5" max="300" step="5" value="25">
+            </div>
+
+            <div class="slider-container">
+              <div class="slider-header">
+                <span>Current Monthly Cloud & SaaS Spend:</span>
+                <span class="slider-val-badge" id="spendValue">$15,000/mo</span>
+              </div>
+              <input type="range" id="monthlySpendRange" class="custom-range" min="1000" max="80000" step="1000"
+                value="15000">
+            </div>
+
+            <div
+              style="background: var(--bg-secondary); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); font-size: 0.88rem; color: var(--text-secondary); text-align: left;">
+              💡 <strong>Industry Benchmark:</strong> Teams using Toffee save an average of <strong>18.5 hours per
+                engineer per month</strong> while trimming 35% off redundant cloud tooling costs.
+            </div>
+          </div>
+
+          <!-- Live Results Card -->
+          <div class="roi-results-box">
+            <span class="badge badge-emerald">Estimated Annual Value</span>
+            <div class="roi-big-stat" id="roiAnnualSavings">$423,900</div>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">Projected Total Net Savings per Year</p>
+
+            <div class="roi-sub-stats">
+              <div class="roi-sub-stat-item">
+                <span class="val" id="roiHoursReclaimed">463 hrs</span>
+                <span class="lbl">Reclaimed / Month</span>
+              </div>
+              <div class="roi-sub-stat-item">
+                <span class="val" id="roiMultiplier">5.8x ROI</span>
+                <span class="lbl">Platform Multiple</span>
+              </div>
+              <div class="roi-sub-stat-item">
+                <span class="val" id="roiPaybackPeriod">2.1 Months</span>
+                <span class="lbl">Payback Period</span>
+              </div>
+              <div class="roi-sub-stat-item">
+                <span class="val" style="color: var(--accent-cyan);">99.999%</span>
+                <span class="lbl">Uptime SLA Guaranteed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. Transparent Tiered Pricing
+       ======================================================================== -->
+  <section id="pricing" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag">Simple, Predictable Pricing</div>
+        <h2>Scale Confidently with No Hidden Overages</h2>
+        <p>All plans come with full SOC-2 Type II compliance, sub-millisecond edge routing, and 24/7 technical
+          support.
+        </p>
+      </div>
+
+      <!-- Billing Switch -->
+      <div class="pricing-toggle-wrap fade-in-up">
+        <span style="font-weight: 600; font-size: 0.95rem;">Monthly Billing</span>
+        <div class="toggle-switch active" id="billingToggle" aria-label="Toggle annual billing">
+          <div class="toggle-knob"></div>
+        </div>
+        <span style="font-weight: 600; font-size: 0.95rem;">Annual Billing <span class="badge badge-emerald">Save
+            25%</span></span>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="pricing-grid">
+        <!-- Starter Plan -->
+        <div class="pricing-card fade-in-up">
+          <div class="plan-name">Starter Plan</div>
+          <div class="plan-desc">For fast-moving early stage startups building their first SaaS MVP.</div>
+          <div class="plan-price-wrap">
+            <span class="plan-price" id="priceStarter">$29</span>
+            <span class="plan-period" id="periodStarter">/month, billed annually</span>
+          </div>
+          <ul class="plan-features">
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Up to 5 Team Members</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>10,000 Autonomous Workflow Executions</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>3 Global Edge Regions</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Community & Discord Support</span>
+            </li>
+          </ul>
+          <button class="btn btn-outline select-plan-btn" data-plan="Starter Plan">Start 14-Day Free Trial</button>
+        </div>
+
+        <!-- Growth Plan (Featured) -->
+        <div class="pricing-card featured fade-in-up">
+          <div class="popular-badge">Most Popular</div>
+          <div class="plan-name">Growth Scale</div>
+          <div class="plan-desc">For scaling SaaS businesses requiring high throughput and automated failover.</div>
+          <div class="plan-price-wrap">
+            <span class="plan-price" id="priceGrowth" style="color: var(--primary-light);">$74</span>
+            <span class="plan-period" id="periodGrowth">/month, billed annually</span>
+          </div>
+          <ul class="plan-features">
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Up to 25 Team Members</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>250,000 Autonomous Workflow Executions</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>18 Global Edge Regions + Anycast</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>SOC-2 Type II Compliance & mTLS</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Priority 24/7 Slack & Email Support</span>
+            </li>
+          </ul>
+          <button class="btn btn-primary btn-glow select-plan-btn" data-plan="Growth Scale Plan">Start 14-Day Free
+            Trial</button>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="pricing-card fade-in-up">
+          <div class="plan-name">Enterprise Custom</div>
+          <div class="plan-desc">For large engineering organizations with custom VPC, SLA, and dedicated
+            infrastructure.
+          </div>
+          <div class="plan-price-wrap">
+            <span class="plan-price" id="priceEnterprise">$224</span>
+            <span class="plan-period" id="periodEnterprise">/month, billed annually</span>
+          </div>
+          <ul class="plan-features">
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Unlimited Team Members</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Unlimited AI Workflow Executions</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Dedicated VPC & On-Premise Gateway</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>99.999% SLA Guarantee</span>
+            </li>
+            <li class="plan-feature-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Dedicated Solutions Architect & TAM</span>
+            </li>
+          </ul>
+          <button class="btn btn-secondary open-demo-modal">Contact Enterprise Sales</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. Sample Work & Interactive Resume Dossier (User Requirement)
+       ======================================================================== -->
+  <section id="sample-work" class="section">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag">Proof of Engineering Excellence</div>
+        <h2>Sample Work & Interactive Resume Showcase</h2>
+        <p>Explore production-grade SaaS platforms engineered with scalable architecture, followed by our full
+          professional resume dossier.</p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="sample-nav-tabs fade-in-up">
+        <button class="sample-tab-btn active" data-view="portfolio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          <span>Featured SaaS Case Studies</span>
+        </button>
+        <button class="sample-tab-btn" data-view="resume-kit" id="tabResumeKitBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span style="color: #38BDF8; font-weight: 700;">★ ATS Resume & Interview Kit</span>
+        </button>
+        <button class="sample-tab-btn" data-view="resume">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Full Engineer Dossier</span>
+        </button>
+        <button class="sample-tab-btn" data-view="builder">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"></path>
+          </svg>
+          <span>Create My Resume</span>
+        </button>
+      </div>
+
+      <!-- View 1: Portfolio Projects Grid -->
+      <div id="samplePortfolioView" class="portfolio-grid fade-in-up">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-thumb-container">
+            <div class="project-thumb-preview"
+              style="background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.2), transparent 70%);">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+                <span style="font-weight: 700; font-size: 0.85rem; color: var(--primary-light);">CloudScale AI
+                  Console</span>
+                <span class="badge badge-emerald">250,000+ Nodes</span>
+              </div>
+              <div
+                style="flex: 1; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">
+                // Multi-Cloud Spot Cost Arbitrage: -44% Active
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <div class="project-tags">
+              <span class="project-tag">Distributed Systems</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">Kubernetes</span>
+              <span class="project-tag">Go</span>
+            </div>
+            <h3 class="project-title">CloudScale AI - Multi-Cloud Fleet Engine</h3>
+            <p class="project-desc">Autonomous multi-cloud fleet manager redistributing compute workloads across
+              AWS,
+              GCP, and Azure based on real-time spot pricing and carbon intensity.</p>
+            <div class="project-metrics-bar">
+              <span>Cloud Spend: <span class="metric-highlight">-44%</span></span>
+              <span>Managed Nodes: <span class="metric-highlight">250k+</span></span>
+              <span>Provisioning: <span class="metric-highlight">1.2s</span></span>
+            </div>
+            <button class="btn btn-secondary btn-sm open-case-study-btn" data-case="cloudscale">
+              <span>Explore Architecture & Deep Dive</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-thumb-container">
+            <div class="project-thumb-preview"
+              style="background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.2), transparent 70%);">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+                <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-cyan);">FinFlow Revenue
+                  Engine</span>
+                <span class="badge badge-indigo">$85M+ ARR</span>
+              </div>
+              <div
+                style="flex: 1; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem; color: #34D399;">
+                // Real-time ClickHouse Aggregation &lt;200ms
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <div class="project-tags">
+              <span class="project-tag">FinTech SaaS</span>
+              <span class="project-tag">ClickHouse</span>
+              <span class="project-tag">React</span>
+              <span class="project-tag">Stripe API</span>
+            </div>
+            <h3 class="project-title">FinFlow Metrics - Real-Time SaaS Analytics</h3>
+            <p class="project-desc">High-throughput financial analytics engine aggregating subscription events,
+              cohort
+              retention, and churn warning signals with sub-second rendering.</p>
+            <div class="project-metrics-bar">
+              <span>Tracked ARR: <span class="metric-highlight">$85M+</span></span>
+              <span>Query Latency: <span class="metric-highlight">&lt; 85ms</span></span>
+              <span>Retention Lift: <span class="metric-highlight">+28%</span></span>
+            </div>
+            <button class="btn btn-secondary btn-sm open-case-study-btn" data-case="finflow">
+              <span>Explore Architecture & Deep Dive</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-thumb-container">
+            <div class="project-thumb-preview"
+              style="background: radial-gradient(circle at 50% 50%, rgba(16,185,129,0.2), transparent 70%);">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+                <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-emerald);">HyperSecure
+                  WAF</span>
+                <span class="badge badge-emerald">140+ PoPs</span>
+              </div>
+              <div
+                style="flex: 1; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem; color: #F59E0B;">
+                // Rust / Wasm Edge Filter - Zero Overhead
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <div class="project-tags">
+              <span class="project-tag">Rust</span>
+              <span class="project-tag">WebAssembly</span>
+              <span class="project-tag">Edge WAF</span>
+              <span class="project-tag">eBPF</span>
+            </div>
+            <h3 class="project-title">HyperSecure - Zero-Trust Edge Security Gateway</h3>
+            <p class="project-desc">Global zero-trust API security layer filtering malicious bots, preventing DDoS
+              attacks, and providing unified developer mTLS authentication across multi-region clusters.</p>
+            <div class="project-metrics-bar">
+              <span>Blocked/Day: <span class="metric-highlight">4.2M</span></span>
+              <span>Global PoPs: <span class="metric-highlight">140+</span></span>
+              <span>P99 Overhead: <span class="metric-highlight">&lt; 2.4ms</span></span>
+            </div>
+            <button class="btn btn-secondary btn-sm open-case-study-btn" data-case="hypersecure">
+              <span>Explore Architecture & Deep Dive</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-thumb-container">
+            <div class="project-thumb-preview"
+              style="background: radial-gradient(circle at 50% 50%, rgba(139,92,246,0.2), transparent 70%);">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+                <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-violet);">PulseDesk AI
+                  CRM</span>
+                <span class="badge badge-indigo">64% Auto-Resolved</span>
+              </div>
+              <div
+                style="flex: 1; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem; color: #C084FC;">
+                // Omnichannel RAG Knowledge Vector Engine
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <div class="project-tags">
+              <span class="project-tag">AI Workflows</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Vue 3</span>
+            </div>
+            <h3 class="project-title">PulseDesk - Autonomous Support & Omnichannel CRM</h3>
+            <p class="project-desc">Omnichannel customer support platform integrating email, chat, WhatsApp, and
+              voice
+              with generative AI co-pilots and sub-4s resolution engines.</p>
+            <div class="project-metrics-bar">
+              <span>Auto-Resolved: <span class="metric-highlight">64%</span></span>
+              <span>First Response: <span class="metric-highlight">4 sec</span></span>
+              <span>CSAT Score: <span class="metric-highlight">4.9 / 5.0</span></span>
+            </div>
+            <button class="btn btn-secondary btn-sm open-case-study-btn" data-case="pulsedesk">
+              <span>Explore Architecture & Deep Dive</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- View 2: Interactive Resume Dossier View -->
+      <div id="sampleResumeView" class="resume-dossier-wrapper" style="display: none;">
+        <div class="resume-header-row">
+          <div class="candidate-info">
+            <h3>Senior Staff SaaS Architect & Full-Stack Engineer</h3>
+            <div class="candidate-title">Specialization: Distributed Systems, High-Throughput SaaS, AI Pipelines &
+              Security</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">
+              Global / Remote - 8+ Years Production Experience - engineer@toffee.ai
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <button class="btn btn-primary btn-sm btn-glow" id="printResumeBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Download / Print PDF Resume</span>
+            </button>
+            <button class="btn btn-secondary btn-sm open-demo-modal">Schedule Interview</button>
+          </div>
+        </div>
+
+        <div class="resume-layout-grid">
+          <!-- Left: Experience Timeline -->
+          <div>
+
+            <div class="timeline-list">
+              <!-- Job 1 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-role">Lead Systems Architect & Co-Founder</div>
+                <div class="timeline-company">Toffee AI & CloudScale - 2024 - Present</div>
+                <div class="timeline-date">San Francisco, CA (Remote)</div>
+                <ul class="timeline-bullets">
+                  <li>Architected distributed SaaS engine managing 250,000+ edge nodes across AWS, GCP, and Azure
+                    with
+                    99.999% SLA.</li>
+                  <li>Built real-time telemetry streaming engine processing over 120,000 req/sec with sub-15ms edge
+                    latency.</li>
+                  <li>Secured SOC-2 Type II certification and achieved ISO 27001 readiness.</li>
+                </ul>
+              </div>
+
+              <!-- Job 2 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-role">Principal SaaS Engineer</div>
+                <div class="timeline-company">FinFlow Metrics - 2022 - 2024</div>
+                <div class="timeline-date">New York, NY</div>
+                <ul class="timeline-bullets">
+                  <li>Engineered low-latency ClickHouse data warehousing pipeline tracking $85M+ in recurring
+                    subscription revenue.</li>
+                  <li>Reduced P99 dashboard query latency from 4.8s down to 85ms using columnar indexing and
+                    vectorized
+                    aggregation.</li>
+                  <li>Spearheaded integration with Stripe, Paddle, and Chargebee webhook streaming infrastructure.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Job 3 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-role">Senior Full-Stack & Security Engineer</div>
+                <div class="timeline-company">HyperSecure & PulseDesk - 2019 - 2022</div>
+                <div class="timeline-date">Austin, TX</div>
+                <ul class="timeline-bullets">
+                  <li>Implemented Rust WebAssembly security filters running at Cloudflare edge with zero cold-start
+                    overhead.</li>
+                  <li>Constructed omnichannel customer support SaaS with 64% autonomous ticket resolution rate.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Skills & Certifications -->
+          <div>
+            <div class="skills-group">
+              <h4>Core Technical Skills</h4>
+              <div class="skill-pills">
+                <span class="skill-pill">TypeScript</span>
+                <span class="skill-pill">Next.js / React</span>
+                <span class="skill-pill">Go (Golang)</span>
+                <span class="skill-pill">Rust</span>
+                <span class="skill-pill">Node.js</span>
+                <span class="skill-pill">Python / FastAPI</span>
+                <span class="skill-pill">Kubernetes</span>
+                <span class="skill-pill">Docker</span>
+                <span class="skill-pill">ClickHouse</span>
+                <span class="skill-pill">PostgreSQL</span>
+                <span class="skill-pill">Redis</span>
+                <span class="skill-pill">GraphQL & gRPC</span>
+                <span class="skill-pill">Kafka</span>
+                <span class="skill-pill">AWS / GCP / Azure</span>
+                <span class="skill-pill">CI/CD & Terraform</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <h4>Industry Certifications</h4>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="badge badge-emerald">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>AWS Solutions Architect Professional</span>
+                </div>
+                <div class="badge badge-indigo">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Certified Kubernetes Administrator (CKA)</span>
+                </div>
+                <div class="badge badge-cyan">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>SOC-2 Type II Security Implementer</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <h4>Education</h4>
+              <div style="font-size: 0.95rem; font-weight: 700;">B.S. in Computer Science</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Summa Cum Laude - Specialization in
+                Distributed
+                Systems</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- View 3: Personal Resume Builder -->
+      <div id="resumeBuilderView" class="resume-builder-wrapper" style="display: none;">
+        <div class="resume-builder-toolbar">
+          <div>
+            <h3>Build Your Resume</h3>
+            <p>Fill in your details and watch your professional resume update instantly.</p>
+          </div>
+          <button class="btn btn-primary btn-sm btn-glow" id="printBuilderResumeBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>Print / Save PDF</span>
+          </button>
+        </div>
+
+        <div class="resume-builder-grid">
+          <form class="resume-builder-form" id="resumeBuilderForm">
+            <div class="builder-field-row">
+              <div class="form-group"><label for="builderName">Full name</label><input id="builderName"
+                  value="Alex Morgan" required></div>
+              <div class="form-group"><label for="builderTitle">Professional title</label><input id="builderTitle"
+                  value="Product Designer & Developer"></div>
+            </div>
+            <div class="builder-field-row">
+              <div class="form-group"><label for="builderEmail">Email</label><input id="builderEmail" type="email"
+                  value="alex@example.com"></div>
+              <div class="form-group"><label for="builderLocation">Location</label><input id="builderLocation"
+                  value="Remote / Worldwide"></div>
+            </div>
+            <div class="form-group"><label for="builderSummary">Professional summary</label><textarea
+                id="builderSummary"
+                rows="4">Creative professional who builds thoughtful digital products, solves complex problems, and delivers measurable results for growing teams.</textarea>
+            </div>
+            <div class="form-group"><label for="builderSkills">Skills <span class="builder-hint">comma
+                  separated</span></label><input id="builderSkills"
+                value="Product Design, JavaScript, Figma, React, Project Leadership"></div>
+            <div class="form-group"><label for="builderExperience">Experience <span class="builder-hint">one role
+                  per line</span></label><textarea id="builderExperience" rows="5">Senior Product Designer | Acme Studio | 2023 - Present
+Product Designer | Bright Labs | 2021 - 2023</textarea></div>
+            <div class="form-group"><label for="builderEducation">Education</label><input id="builderEducation"
+                value="B.S. Computer Science - State University"></div>
+            <div class="form-group"><label for="builderProjects">Projects <span class="builder-hint">one project per
+                  line</span></label><textarea id="builderProjects" rows="4">Portfolio redesign - Improved conversion by 32%
+Analytics dashboard - Reduced reporting time by 60%</textarea></div>
+          </form>
+
+          <article class="resume-builder-preview" id="resumeBuilderPreview">
+            <header class="builder-preview-header">
+              <h2 id="previewName">Alex Morgan</h2>
+              <p id="previewTitle">Product Designer & Developer</p>
+              <div id="previewContact">alex@example.com | Remote / Worldwide</div>
+            </header>
+            <section>
+              <h4>Profile</h4>
+              <p id="previewSummary"></p>
+            </section>
+            <section>
+              <h4>Experience</h4>
+              <div id="previewExperience"></div>
+            </section>
+            <section>
+              <h4>Skills</h4>
+              <div class="builder-preview-skills" id="previewSkills"></div>
+            </section>
+            <section>
+              <h4>Projects</h4>
+              <div id="previewProjects"></div>
+            </section>
+            <section>
+              <h4>Education</h4>
+              <p id="previewEducation"></p>
+            </section>
+          </article>
+        </div>
+      </div>
+
+      <!-- View 4: ATS Resume & Technical Interview Dossier -->
+      <div id="sampleResumeKitView" class="resume-kit-container" style="display: none;">
+        <!-- Header Bar -->
+        <div class="resume-header-row"
+          style="background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+          <div class="candidate-info">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap;">
+              <span class="badge badge-emerald">ATS-Optimized Capstone</span>
+              <span class="badge badge-indigo">Python 3.10+ Threading</span>
+              <span class="badge badge-cyan">Zero Dependencies</span>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 800;">Real-Time Distributed Cloud & SaaS Telemetry Platform
+            </h3>
+            <div class="candidate-title" style="color: var(--text-secondary); margin-top: 4px;">
+              Production-ready resume bullets (Google XYZ / STAR methodology), architectural decision proofs, and
+              technical interview talking points.
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+            <button class="btn btn-primary btn-sm btn-glow" id="btnCopyAllBullets">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy All Bullets (STAR)</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnPrintResumeKit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Print / Save PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Role Selector Bar -->
+        <div class="resume-role-selector-bar">
+          <button class="role-tab-btn active" data-role="fullstack">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Full-Stack Python Engineer</span>
+          </button>
+          <button class="role-tab-btn" data-role="backend">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+            <span>Backend & Systems Engineer</span>
+          </button>
+          <button class="role-tab-btn" data-role="devops">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>Cloud & DevOps Engineer</span>
+          </button>
+        </div>
+
+        <!-- ATS Bullets Container -->
+        <div class="ats-bullets-grid" id="atsBulletsGrid">
+          <!-- Populated by sample-work-resume.js -->
+        </div>
+
+        <!-- Architecture Decision Matrix Showcase -->
+        <div class="arch-showcase-card">
+          <div
+            style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+            <h4 style="font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <span>Architectural Blueprint & Design Trade-offs (Interview Proof)</span>
+            </h4>
+            <span class="badge badge-emerald">Standard Library Python</span>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+            Technical justifications used to explain system trade-offs during Senior / Staff engineering interviews:
+          </p>
+
+          <table class="arch-matrix-table">
+            <thead>
+              <tr>
+                <th>Design Decision</th>
+                <th>Selected Technology</th>
+                <th>Why It Outperforms Alternatives</th>
+                <th>Quantified Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Real-Time Stream</strong></td>
+                <td><span class="skill-pill" style="margin:0;">Server-Sent Events (SSE)</span></td>
+                <td>Standard HTTP/1.1 & HTTP/2, native browser reconnect, traverses firewalls without custom
+                  protocol handshake.</td>
+                <td><span class="metric-highlight">&lt; 15ms</span> edge broadcast</td>
+              </tr>
+              <tr>
+                <td><strong>Concurrency Model</strong></td>
+                <td><span class="skill-pill" style="margin:0;">ThreadingHTTPServer</span></td>
+                <td>Dedicated OS thread per connection avoids blocking event loops on file operations or state
+                  mutations.</td>
+                <td><span class="metric-highlight">500+</span> concurrent sessions</td>
+              </tr>
+              <tr>
+                <td><strong>State Management</strong></td>
+                <td><span class="skill-pill" style="margin:0;">Thread-Safe Lock Engine</span></td>
+                <td>Atomic in-memory synchronization guarantees zero race conditions during simultaneous chaos/spike
+                  injections.</td>
+                <td><span class="metric-highlight">100%</span> thread safety</td>
+              </tr>
+              <tr>
+                <td><strong>Portability</strong></td>
+                <td><span class="skill-pill" style="margin:0;">Zero External Dependencies</span></td>
+                <td>Pure Python 3 standard library runs immediately on any Windows, macOS, Linux, or Docker
+                  container with 0 pip installs.</td>
+                <td><span class="metric-highlight">0 sec</span> setup friction</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Technical Interview Q&A Pitch -->
+        <div class="arch-showcase-card">
+          <div style="margin-bottom: 16px;">
+            <h4 style="font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>How to Pitch This Project in Interviews (2-Minute Script)</span>
+            </h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
+              Click to expand model answers to the most common questions hiring managers and recruiters ask:
+            </p>
+          </div>
+
+          <!-- Elevator Pitch Box -->
+          <div
+            style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <strong style="color: var(--primary-light); font-size: 0.85rem; text-transform: uppercase;">⭐ 2-Minute
+                Elevator Pitch Script</strong>
+              <button class="copy-bullet-btn" id="btnCopyPitch">
+                <span>Copy Script 📋</span>
+              </button>
+            </div>
+            <p id="pitchText" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-primary);">
+              "In this project, I engineered a high-concurrency cloud telemetry and chaos engineering platform using
+              pure Python standard library. I implemented a thread-safe state engine and Server-Sent Events (SSE)
+              pipeline to stream real-time cluster telemetry, automated failover routing from us-east-1 to
+              eu-central-1, and Layer 7 DDoS mitigation. To demonstrate production resilience, I built interactive
+              controls where users can inject 10,000 req/s traffic spikes and watch the autoscaling worker threads
+              rebalance latency under 15ms. The entire backend runs with zero third-party dependencies, ensuring
+              100% portability and instant startup on any environment."
+            </p>
+          </div>
+
+          <!-- Interview Accordions -->
+          <div class="interview-faq-list" id="interviewFaqList">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. Social Proof & Customer Reviews Slider
+       ======================================================================== -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag">Customer Stories</div>
+        <h2>Trusted by Engineering Leaders Worldwide</h2>
+        <p>Discover how modern technology teams supercharge reliability and slash cloud costs with Toffee.</p>
+      </div>
+
+      <div class="testimonials-slider-container fade-in-up">
+        <div class="testimonial-track-wrapper" id="testimonialTrack">
+          <!-- Slide 1 -->
+          <div class="testimonial-slide active">
+            <div class="author-stars">★★★★★</div>
+            <div class="testimonial-quote">
+              "Toffee completely transformed our infrastructure operations. We went from spending 30+ hours a week
+              troubleshooting multi-region deployment outages to achieving 99.999% uptime with zero manual
+              intervention."
+            </div>
+            <div class="testimonial-author-row">
+              <div class="author-info">
+                <div class="author-avatar">SL</div>
+                <div>
+                  <div class="author-name">Sarah Lin</div>
+                  <div class="author-role">VP of Engineering at HyperScale Cloud</div>
+                </div>
+              </div>
+              <span class="badge badge-emerald">44% Cost Reduction</span>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="testimonial-slide">
+            <div class="author-stars">★★★★★</div>
+            <div class="testimonial-quote">
+              "The autonomous AI workflows in Toffee are lightyears ahead of anything we tested. Our event pipelines
+              process over 20M webhook events a day at under 14ms latency. It's a game-changer."
+            </div>
+            <div class="testimonial-author-row">
+              <div class="author-info">
+                <div class="author-avatar" style="background: var(--accent-cyan);">MK</div>
+                <div>
+                  <div class="author-name">Marcus Keller</div>
+                  <div class="author-role">Chief Technology Officer at PayGrid Global</div>
+                </div>
+              </div>
+              <span class="badge badge-cyan">20M Webhooks/Day</span>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="testimonial-slide">
+            <div class="author-stars">★★★★★</div>
+            <div class="testimonial-quote">
+              "SOC-2 compliance used to take our security team 4 months every audit cycle. With Toffee's automated
+              zero-trust enforcement, audits take literally one afternoon. I can't recommend it enough."
+            </div>
+            <div class="testimonial-author-row">
+              <div class="author-info">
+                <div class="author-avatar" style="background: var(--accent-emerald);">ER</div>
+                <div>
+                  <div class="author-name">Elena Rostova</div>
+                  <div class="author-role">Head of InfoSec at DataSphere</div>
+                </div>
+              </div>
+              <span class="badge badge-indigo">Instant SOC-2 Audit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="slider-controls-row">
+          <button class="slider-nav-btn" id="prevTestimonial" aria-label="Previous Review">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="slider-dots" id="testimonialDots"></div>
+          <button class="slider-nav-btn" id="nextTestimonial" aria-label="Next Review">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       11. Interactive FAQ with Instant Search
+       ======================================================================== -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-tag">Knowledge Base</div>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about getting started, security, and migration.</p>
+      </div>
+
+      <!-- FAQ Search -->
+      <div class="faq-search-wrapper fade-in-up">
+        <svg class="faq-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="faqSearch" class="faq-search-input"
+          placeholder="Search questions (e.g. SOC-2, latency, migration)...">
+      </div>
+
+      <!-- Accordions -->
+      <div class="faq-accordion-list fade-in-up">
+        <div class="faq-accordion-item">
+          <div class="faq-accordion-header">
+            <span>How does Toffee integrate with existing AWS / GCP / Azure setups?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-accordion-body">
+            <p>Toffee deploys as a lightweight sidecar or edge gateway via Terraform, Helm charts, or our 1-click
+              CLI.
+              It connects seamlessly to your existing VPC without requiring any breaking code changes or
+              infrastructure
+              rewrites.</p>
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <div class="faq-accordion-header">
+            <span>Is Toffee fully compliant with SOC-2 Type II and HIPAA?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-accordion-body">
+            <p>Yes. Toffee is SOC-2 Type II certified and provides end-to-end mTLS encryption, AES-256 data-at-rest
+              encryption, and automated compliance logging suitable for healthcare (HIPAA) and fintech (PCI-DSS
+              Level 1)
+              applications.</p>
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <div class="faq-accordion-header">
+            <span>What happens after my 14-day free trial ends?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-accordion-body">
+            <p>During the 14-day trial, you get full unrestricted access to all Growth-tier features. No credit card
+              is
+              required to start. When the trial concludes, you can upgrade to a paid tier or transition to our
+              forever-free sandbox tier.</p>
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <div class="faq-accordion-header">
+            <span>Can we self-host Toffee on our own private Kubernetes cluster?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="faq-accordion-body">
+            <p>Yes, our Enterprise tier supports on-premise and air-gapped self-hosted Kubernetes deployments with
+              dedicated engineering support and custom licensing models.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       12. Global Call to Action Banner
+       ======================================================================== -->
+  <section class="section"
+    style="background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(99,102,241,0.1) 100%);">
+    <div class="container" style="text-align: center;">
+      <div
+        style="max-width: 800px; margin: 0 auto; padding: 48px; border-radius: var(--radius-xl); background: var(--bg-card); border: 1px solid var(--border-light); box-shadow: var(--shadow-glow-indigo);">
+        <h2 style="margin-bottom: 16px;">Ready to Accelerate Your SaaS Architecture?</h2>
+        <p style="margin-bottom: 32px; font-size: 1.15rem;">Join over 50,000 engineers and high-growth SaaS
+          companies
+          building with Toffee today.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="#pricing" class="btn btn-primary btn-lg btn-glow">Start 14-Day Free Trial</a>
+          <button class="btn btn-secondary btn-lg open-demo-modal">Book Custom Architecture Demo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       13. Enterprise Footer
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <a href="#" class="nav-brand">
+            <div class="nav-brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <span>Toffee<span style="color: var(--primary-light);">.ai</span></span>
+          </a>
+          <p>The developer-first autonomous SaaS orchestration engine built for maximum reliability, speed, and cost
+            efficiency.</p>
+          <div class="footer-status-pill">
+            <span class="pulse-dot"></span>
+            <span>All Global Clusters Operational (99.999%)</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul class="footer-links">
+            <li><a href="#telemetry">Live Telemetry</a></li>
+            <li><a href="#features">Edge Routing</a></li>
+            <li><a href="#sandbox">AI Workflows</a></li>
+            <li><a href="#pricing">Pricing Plans</a></li>
+            <li><a href="#calculator">ROI Calculator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Solutions</h5>
+          <ul class="footer-links">
+            <li><a href="#sample-work">Previous Works</a></li>
+            <li><a href="#sample-work">Engineer Resume</a></li>
+            <li><a href="#features">Multi-Cloud Arbitrage</a></li>
+            <li><a href="#features">Zero-Trust WAF</a></li>
+            <li><a href="#faq">Knowledge Base</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul class="footer-links">
+            <li><a href="#" class="open-demo-modal">About Toffee</a></li>
+            <li><a href="#" class="open-demo-modal">Careers (We're Hiring)</a></li>
+            <li><a href="#" class="open-demo-modal">Security & SOC-2</a></li>
+            <li><a href="#" class="open-demo-modal">Privacy Policy</a></li>
+            <li><a href="#" class="open-demo-modal">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Stay Updated</h5>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Get our bi-weekly breakdown
+            on
+            distributed systems and SaaS engineering.</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="you@company.com" required>
+            <button type="submit" class="btn btn-primary btn-sm">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Toffee AI Technologies Inc. All rights reserved. Built with precision.</div>
+        <div class="footer-socials">
+          <a href="#" class="social-icon-btn" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+              </path>
+            </svg>
+          </a>
+          <a href="#" class="social-icon-btn" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+              </path>
+            </svg>
+          </a>
+          <a href="#" class="social-icon-btn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <a href="#" class="social-icon-btn" aria-label="Discord">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M18 6h0a14.5 14.5 0 0 0-4-1.5 9.6 9.6 0 0 0-.4 1 13.9 13.9 0 0 0-3.2 0 9.6 9.6 0 0 0-.4-1 14.5 14.5 0 0 0-4 1.5A18.3 18.3 0 0 0 2 17.5a14.3 14.3 0 0 0 4.5 2.2 10.3 10.3 0 0 0 1-1.6 9.3 9.3 0 0 1-1.5-.7l.3-.2a11.7 11.7 0 0 0 11.4 0l.3.2a9.3 9.3 0 0 1-1.5.7 10.3 10.3 0 0 0 1 1.6 14.3 14.3 0 0 0 4.5-2.2A18.3 18.3 0 0 0 22 6a14.5 14.5 0 0 0-4 0z">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       14. Modals & Toast Container
+       ======================================================================== -->
+
+  <!-- Demo Booking Modal -->
+  <div class="modal-overlay" id="demoBookingModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" aria-label="Close modal">x</button>
+      <div class="modal-header">
+        <span class="badge badge-indigo" style="margin-bottom: 8px;">VIP Guided Tour</span>
+        <h3 style="font-size: 1.6rem; margin-bottom: 6px;">Schedule a 1-on-1 Architecture Demo</h3>
+        <p style="font-size: 0.95rem; color: var(--text-secondary);">Meet with a Principal SaaS Architect to review
+          your
+          cloud stack and calculate customized cost savings.</p>
+      </div>
+      <form class="modal-form" id="demoBookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="demoName">Full Name</label>
+            <input type="text" id="demoName" placeholder="Alex Morgan" required>
+          </div>
+          <div class="form-group">
+            <label for="demoEmail">Work Email</label>
+            <input type="email" id="demoEmail" placeholder="alex@company.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="demoCompany">Company Name</label>
+            <input type="text" id="demoCompany" placeholder="Acme Technologies" required>
+          </div>
+          <div class="form-group">
+            <label for="demoTeamSize">Engineering Team Size</label>
+            <select id="demoTeamSize">
+              <option value="1-10">1 - 10 Engineers</option>
+              <option value="11-50" selected>11 - 50 Engineers</option>
+              <option value="51-200">51 - 200 Engineers</option>
+              <option value="201+">201+ Engineers</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="demoPlanInterest">Interested Plan / Architecture Scope</label>
+          <input type="text" id="demoPlanInterest" value="Growth Scale Plan" readonly>
+        </div>
+        <div class="form-group">
+          <label for="demoNotes">What are your top priorities? (Optional)</label>
+          <textarea id="demoNotes" rows="3"
+            placeholder="e.g. Multi-cloud spot cost reduction, sub-15ms edge latency, SOC-2 readiness..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-glow" style="margin-top: 10px;">
+          <span>Confirm Demo Invitation</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Case Study Deep Dive Modal -->
+  <div class="modal-overlay" id="caseStudyModal">
+    <div class="modal-dialog" style="max-width: 720px;">
+      <button class="modal-close-btn" aria-label="Close modal">x</button>
+      <span class="badge badge-cyan" style="margin-bottom: 8px;">Architecture Case Study</span>
+      <h3 id="modalCaseTitle" style="font-size: 1.6rem; margin-bottom: 4px;">Project Title</h3>
+      <p id="modalCaseTagline"
+        style="color: var(--primary-light); font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">Tagline</p>
+      <div id="modalCaseRole" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Role -
+        Timeline
+      </div>
+
+      <div id="modalCaseMetrics"
+        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;"></div>
+
+      <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Executive Summary</h4>
+      <p id="modalCaseDesc"
+        style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">Description
+      </p>
+
+      <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Tech Stack & Tooling</h4>
+      <div id="modalCaseTech" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;"></div>
+
+      <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Key Engineering Milestones & Wins</h4>
+      <ul id="modalCaseHighlights"
+        style="list-style: disc; padding-left: 20px; font-size: 0.92rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px;">
+      </ul>
+
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button class="btn btn-secondary btn-sm"
+          onclick="document.getElementById('caseStudyModal').classList.remove('open')">Close</button>
+        <button class="btn btn-primary btn-sm open-demo-modal">Discuss Similar Project</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Video Demo Modal -->
+  <div class="modal-overlay" id="videoDemoModal">
+    <div class="modal-dialog" style="max-width: 800px; padding: 24px;">
+      <button class="modal-close-btn" aria-label="Close modal">x</button>
+      <h3 style="font-size: 1.35rem; margin-bottom: 16px;">Toffee AI 2.0 Product Walkthrough</h3>
+      <div
+        style="width: 100%; height: 380px; background: #000; border-radius: var(--radius-md); overflow: hidden; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--border-light);">
+        <!-- Simulated High-End Video Player UI -->
+        <div
+          style="position: absolute; top: 16px; left: 20px; display: flex; align-items: center; gap: 8px; z-index: 10;">
+          <span class="pulse-dot"></span>
+          <span
+            style="font-size: 0.8rem; font-weight: 700; color: #FFF; background: rgba(0,0,0,0.6); padding: 2px 8px; border-radius: 4px;">4K
+            HDR - 60 FPS</span>
+        </div>
+        <div
+          style="width: 72px; height: 72px; border-radius: 50%; background: var(--grad-primary); display: flex; align-items: center; justify-content: center; color: #FFF; cursor: pointer; box-shadow: 0 0 30px rgba(99,102,241,0.6); transition: transform 0.2s;"
+          onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </div>
+        <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 0.85rem; color: #A5B4FC;">
+          [Interactive
+          Simulation: Click Play to trigger full 1080p feature walkthrough]</div>
+        <div
+          style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 12px 20px; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 0.8rem; color: #94A3B8;">0:00 / 2:18</span>
+          <div
+            style="flex: 1; height: 4px; background: rgba(255,255,255,0.2); margin: 0 16px; border-radius: 2px; position: relative;">
+            <div style="width: 35%; height: 100%; background: var(--primary); border-radius: 2px;"></div>
+          </div>
+          <span style="font-size: 0.8rem; color: #94A3B8;">HD 1080p</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       11. Unified Auth, OTP & Voice Biometrics Modal
+       ======================================================================== -->
+  <div class="auth-modal-overlay" id="authModal" role="dialog" aria-modal="true" aria-label="Toffee Authentication">
+    <div class="auth-modal-card">
+      <button class="auth-modal-close" aria-label="Close Authentication Modal">×</button>
+
+      <div class="auth-header">
+        <div class="auth-brand-badge">⚡ Toffee.ai Zero-Trust Auth</div>
+        <h2>Welcome to Toffee AI</h2>
+        <p>Sign up, log in with OTP verification, or unlock via Voice Biometrics.</p>
+      </div>
+
+      <!-- Top Tabs: Signup vs Login vs Voice -->
+      <div class="auth-nav-tabs">
+        <button class="auth-tab-btn active" data-tab="signup">📝 Sign Up</button>
+        <button class="auth-tab-btn" data-tab="login">🔑 Log In</button>
+        <button class="auth-tab-btn" data-tab="voice">🎙️ Voice Unlock</button>
+      </div>
+
+      <!-- 1. SIGNUP VIEW -->
+      <div id="authSignupView">
+        <div class="auth-sub-tabs">
+          <button class="auth-sub-tab active" data-sub="email">📧 Email Signup</button>
+          <button class="auth-sub-tab" data-sub="phone">📱 Phone Signup</button>
+        </div>
+
+        <form id="authSignupForm">
+          <div class="auth-form-group">
+            <label for="signupName">Full Name</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">👤</span>
+              <input type="text" id="signupName" class="auth-input" placeholder="e.g. Alex Mercer" required>
+            </div>
+          </div>
+
+          <div class="auth-form-group" id="signupEmailGroup">
+            <label for="signupEmail">Work Email Address</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">✉️</span>
+              <input type="email" id="signupEmail" class="auth-input" placeholder="alex@company.com">
+            </div>
+          </div>
+
+          <div class="auth-form-group" id="signupPhoneGroup" style="display:none;">
+            <label for="signupPhone">Mobile Phone Number</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">📞</span>
+              <input type="tel" id="signupPhone" class="auth-input" placeholder="+1 (800) 555-0199">
+            </div>
+          </div>
+
+          <!-- Send OTP Button -->
+          <div style="margin: 10px 0 16px;">
+            <button type="button" id="btnSendSignupOtp" class="btn btn-secondary btn-sm" style="width:100%;">
+              📲 Send 6-Digit OTP Code
+            </button>
+          </div>
+
+          <!-- Split OTP Code Section -->
+          <div id="signupOtpSection">
+            <label style="font-size:0.8rem;font-weight:700;color:#CBD5E1;">Enter 6-Digit Verification OTP</label>
+            <div class="otp-container" id="signupOtpContainer">
+              <input type="text" maxlength="1" class="otp-digit-input" autofocus>
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+            </div>
+          </div>
+
+          <div class="auth-form-group">
+            <label for="signupPassword">Create Secure Password</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">🔒</span>
+              <input type="password" id="signupPassword" class="auth-input" placeholder="Minimum 6 characters" required>
+            </div>
+          </div>
+
+          <button type="submit" id="btnSubmitSignup" class="auth-submit-btn">
+            Create Toffee Account 🚀
+          </button>
+        </form>
+      </div>
+
+      <!-- 2. LOGIN VIEW -->
+      <div id="authLoginView" style="display:none;">
+        <div class="auth-sub-tabs">
+          <button class="auth-sub-tab active" data-sub="password">🔑 Password Login</button>
+          <button class="auth-sub-tab" data-sub="otp">📲 OTP Login</button>
+        </div>
+
+        <form id="authLoginForm">
+          <div class="auth-form-group">
+            <label for="loginIdentifier">Email or Phone Number</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">👤</span>
+              <input type="text" id="loginIdentifier" class="auth-input" placeholder="alex@toffee.ai or +1-800-863-3332" required>
+            </div>
+          </div>
+
+          <div class="auth-form-group" id="loginPasswordGroup">
+            <label for="loginPassword">Password</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">🔒</span>
+              <input type="password" id="loginPassword" class="auth-input" placeholder="Enter your password">
+            </div>
+          </div>
+
+          <div id="loginOtpSection" style="display:none;">
+            <button type="button" id="btnSendLoginOtp" class="btn btn-secondary btn-sm" style="width:100%;margin-bottom:12px;">
+              📲 Send Login OTP Code
+            </button>
+            <label style="font-size:0.8rem;font-weight:700;color:#CBD5E1;">Enter 6-Digit Login Code</label>
+            <div class="otp-container" id="loginOtpContainer">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+              <input type="text" maxlength="1" class="otp-digit-input">
+            </div>
+          </div>
+
+          <button type="submit" id="btnSubmitLogin" class="auth-submit-btn">
+            Log In to Toffee ⚡
+          </button>
+        </form>
+      </div>
+
+      <!-- 3. VOICE BIOMETRIC LOGIN VIEW -->
+      <div id="authVoiceView" style="display:none;">
+        <div class="voice-biometric-box">
+          <div style="font-size:0.8rem;color:#CBD5E1;font-weight:700;">Speak your passphrase to unlock:</div>
+          <div class="voice-passphrase-display">"My voice is my secure password in Toffee AI"</div>
+
+          <!-- Audio Waveform Visualizer -->
+          <canvas id="voiceWaveformCanvas" class="voice-waveform-canvas" width="420" height="80"></canvas>
+
+          <div id="voiceTranscriptDisplay" style="font-size:0.85rem;color:#38BDF8;font-weight:700;min-height:24px;margin:6px 0;"></div>
+
+          <div class="voice-confidence-bar">
+            <div class="voice-confidence-fill" id="voiceLoginConfidenceFill"></div>
+          </div>
+
+          <button id="btnVoiceLoginRecord" class="voice-record-btn" aria-label="Start Voice Verification" title="Click to Speak and Unlock">🎙️</button>
+          <div class="voice-status-text" id="voiceLoginStatusText">Click mic and speak passphrase to unlock</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="toffee-toast" id="toffeeToast"><span id="toastIcon">📋</span><span id="toastMsg">Copied to clipboard!</span></div>
+
+  <!-- Scripts -->
+  <script src="js/theme.js"></script>
+  <script src="js/dashboard-preview.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/sandbox.js"></script>
+  <script src="js/sample-work-resume.js?v=3"></script>
+  <script src="js/resume-builder.js?v=5"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/testimonials.js"></script>
+  <script src="js/modal-forms.js"></script>
+  <script src="js/auth.js?v=2"></script>
+  <script src="js/voice-biometrics.js?v=1"></script>
+  <script src="js/doc-reader.js?v=1"></script>
+  <script src="js/ai-copilot.js?v=7"></script>
+  <script src="js/db-studio.js?v=1"></script>
+  <script src="js/gateway-settings.js?v=1"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
