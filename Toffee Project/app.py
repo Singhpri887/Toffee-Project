@@ -1,5 +1,6 @@
 from server import ToffeeHandler, SilentThreadingHTTPServer
 import sys
+import os
 
 if hasattr(sys.stdout, "reconfigure"):
     try:
@@ -9,8 +10,8 @@ if hasattr(sys.stdout, "reconfigure"):
 
 
 if __name__ == "__main__":
-    host = "127.0.0.1"
-    port = 8000
+    host = "0.0.0.0"
+    port = int(os.environ.get("PORT", 8000))
     server = SilentThreadingHTTPServer((host, port), ToffeeHandler)
     
     print("\n" + "=" * 68)
